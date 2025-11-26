@@ -1381,9 +1381,6 @@ color: #302b6d;
     font-size: 32px;
     transition: all 0.3s ease;
     position: relative;
-
-    /* Floating animation */
-    animation: floatUpDown 3s ease-in-out infinite;
 }
 
 .social-toggle-btn:hover {
