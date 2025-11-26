@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SRM University – Infrastructure</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* HERO */
+.infra-hero {
+    height: 65vh;
+    background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infra-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+}
+
+.infra-hero-content {
+    text-align: center;
+    color: white;
+    z-index: 10;
+}
+
+.infra-hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.infra-hero-content p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* ABOUT */
+.infra-about {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.infra-about-text {
+    max-width: 850px;
+    margin: 12px auto 0;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* GRID */
+.infra-grid {
+    padding: 50px 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+}
+
+.infra-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+.infra-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.infra-card-content {
+    padding: 20px;
+}
+
+.infra-card-content h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.infra-card-content p {
+    font-size: 16px;
+    color: #555;
+}
+
+.infra-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 28px rgba(0,0,0,0.15);
+}
+
+/* SCROLL ANIMATIONS */
+.infra-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s ease;
+}
+
+.fade-up {
+    transform: translateY(40px);
+}
+
+.zoom-in {
+    transform: scale(0.9);
+}
+
+.infra-animate.infra-show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.infra-delay-1 { transition-delay: 0.2s; }
+.infra-delay-2 { transition-delay: 0.4s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .infra-hero-content h1 {
+        font-size: 32px;
+    }
+
+    .infra-about-text {
+        font-size: 16px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO SECTION -->
+<section class="infra-hero">
+    <div class="infra-hero-overlay"></div>
+    <div class="infra-hero-content">
+        <h1 class="infra-animate fade-up">World-Class Infrastructure</h1>
+        <p class="infra-animate fade-up infra-delay-1">Premium campus facilities designed for excellence and student success.</p>
+    </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="infra-about">
+    <h2 class="infra-animate fade-up">SRM University – Campus Infrastructure</h2>
+    <p class="infra-about-text infra-animate fade-up infra-delay-1">
+        SRM University is equipped with state-of-the-art infrastructure including modern hostels, smart classrooms, 
+        sports arenas, digital labs, world-class hospitality, and highly secure transport systems. Every facility 
+        is crafted to support academic growth and personal well-being.
+    </p>
+</section>
+
+<!-- INFRA GRID -->
+<section class="infra-grid">
+
+    <div class="infra-card infra-animate zoom-in">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80" alt="">
+        <div class="infra-card-content">
+            <h3>Hostel Facilities</h3>
+            <p>Fully furnished, secure & hygienic hostels equipped with AC rooms, study halls, Wi-Fi, and 24/7 security.</p>
+        </div>
+    </div>
+
+    <div class="infra-card infra-animate zoom-in infra-delay-1">
+        <img src="https://images.unsplash.com/photo-1600508774630-1f72e2c3c646?auto=format&fit=crop&w=1200&q=80" alt="">
+        <div class="infra-card-content">
+            <h3>Sports & Playground</h3>
+            <p>International-standard playgrounds for cricket, football, basketball, tennis, athletics, and indoor sports.</p>
+        </div>
+    </div>
+
+    <div class="infra-card infra-animate zoom-in infra-delay-2">
+        <img src="https://images.unsplash.com/photo-1593079831268-9ac49f95a3d8?auto=format&fit=crop&w=1200&q=80" alt="">
+        <div class="infra-card-content">
+            <h3>Fitness & Gym</h3>
+            <p>High-end gym equipped with modern machines, cardio sections, trainers, and yoga & wellness zones.</p>
+        </div>
+    </div>
+
+    <div class="infra-card infra-animate zoom-in">
+        <img src="https://images.unsplash.com/photo-1587486913049-9fc7fd2215f3?auto=format&fit=crop&w=1200&q=80" alt="">
+        <div class="infra-card-content">
+            <h3>Transport Services</h3>
+            <p>Fleet of AC buses covering major routes with GPS tracking ensuring safe & reliable transportation.</p>
+        </div>
+    </div>
+
+    <div class="infra-card infra-animate zoom-in infra-delay-1">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80" alt="">
+        <div class="infra-card-content">
+            <h3>Hospitality & Dining</h3>
+            <p>Multi-cuisine food courts, clean dining halls, hygienic kitchens, and 24x7 first-aid medical support.</p>
+        </div>
+    </div>
+
+    <div class="infra-card infra-animate zoom-in infra-delay-2">
+        <img src="https://images.unsplash.com/photo-1633286205285-d020bcdbd0f0?auto=format&fit=crop&w=1200&q=80" alt="">
+        <div class="infra-card-content">
+            <h3>Smart Classrooms</h3>
+            <p>Digital classrooms equipped with interactive boards, AV systems, and high-speed internet.</p>
+        </div>
+    </div>
+
+</section>
+
+<script >
+    const infraElements = document.querySelectorAll('.infra-animate');
+
+const onScroll = () => {
+    infraElements.forEach(el => {
+        const pos = el.getBoundingClientRect().top;
+        const trigger = window.innerHeight * 0.80;
+
+        if (pos < trigger) {
+            el.classList.add("infra-show");
+        }
+    });
+};
+
+window.addEventListener("scroll", onScroll);
+window.addEventListener("load", onScroll);
+
+</script>
+
+</body>
+</html>

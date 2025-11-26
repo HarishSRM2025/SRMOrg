@@ -1,1845 +1,544 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRM University - Excellence in Education</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Top Bar */
-        .topbar {
-            background: linear-gradient(135deg, #302b6d 0%, #DC143C 100%);
-            color: white;
-            padding: 12px 0;
-            font-size: 14px;
-        }
-
-        .topbar-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .topbar-left, .topbar-right {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .topbar-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .topbar a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .topbar a:hover {
-            opacity: 0.8;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 85px;
-        }
-
-        .logo {
-            font-size: 30px;
-            font-weight: bold;
-            color: #302b6d;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1001;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            position: relative;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: #302b6d;
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: #302b6d;
-        }
-
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-            border-radius: 10px;
-            min-width: 250px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s;
-            margin-top: 15px;
-            z-index: 1000;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 20px;
-            color: #333;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 14px;
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a::after {
-            display: none;
-        }
-
-        .dropdown-menu a:hover {
-            background: linear-gradient(135deg, rgba(48,43,109,0.1), rgba(220,20,60,0.1));
-            color: #302b6d;
-            padding-left: 25px;
-        }
-
-        .dropdown-menu a i {
-            color: #302b6d;
-            font-size: 16px;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background: #302b6d;
-            margin: 4px 0;
-            transition: 0.3s;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* Off-canvas Menu for Mobile */
-        .offcanvas-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .offcanvas-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Hero Section with Video */
-        .hero {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            z-index: 0;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(48,43,109,0.4) 0%, rgba(220, 20, 60, 0.37) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 58px;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 24px;
-            margin-bottom: 35px;
-            animation: fadeInUp 1s ease 0.2s both;
-            opacity: 0.95;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .btn {
-            padding: 16px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #302b6d;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #302b6d;
-        }
-
-        /* Campus Tabs Section */
-        .campus-section {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 44px;
-            color: #302b6d;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .section-header p {
-            font-size: 18px;
-            color: #666;
-        }
-
-        .campus-tabs-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .campus-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 18px 45px;
-            background: white;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 17px;
-            font-weight: 600;
-            color: #666;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .tab-btn:hover {
-            border-color: #302b6d;
-            color: #302b6d;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(48,43,109,0.2);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, #302b6d, #DC143C);
-            color: white;
-            border-color: #302b6d;
-            box-shadow: 0 5px 25px rgba(48,43,109,0.3);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.6s ease;
-        }
-
-        /* Colleges Grid */
-        .colleges-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .college-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.4s;
-            cursor: pointer;
-        }
-
-        .college-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(48,43,109,0.2);
-        }
-
-        .college-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .college-card:hover .college-image {
-            transform: scale(1.1);
-        }
-
-        .college-image-container {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .college-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, #302b6d, #DC143C);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 12px;
-            font-weight: 600;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-        }
-
-        .college-content {
-            padding: 25px;
-        }
-
-        .college-content h3 {
-            font-size: 20px;
-            color: #302b6d;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .college-content p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .college-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: #888;
-        }
-
-        .meta-item i {
-            color: #302b6d;
-        }
-
-        /* Animated Counter Widget */
-        .stats-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #302b6d 0%, #DC143C 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-        }
-
-        .stats-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .stat-icon {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-
-        .stat-item h3 {
-            font-size: 52px;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .stat-item p {
-            font-size: 18px;
-            opacity: 0.95;
-        }
-
-        /* Teaching Culture Section */
-        .culture-section {
-            padding: 80px 20px;
-            background: white;
-        }
-
-        .culture-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-        }
-
-        .culture-card {
-            text-align: center;
-            padding: 45px 35px;
-            border-radius: 20px;
-            background: #f8f9fa;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .culture-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #302b6d, #DC143C);
-            transition: left 0.4s;
-            z-index: 0;
-        }
-
-        .culture-card:hover::before {
-            left: 0;
-        }
-
-        .culture-card:hover {
-            color: white;
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(48,43,109,0.3);
-        }
-
-        .culture-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .culture-icon {
-            font-size: 55px;
-            margin-bottom: 20px;
-            color: #302b6d;
-            transition: color 0.4s;
-        }
-
-        .culture-card:hover .culture-icon {
-            color: white;
-        }
-
-        .culture-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .culture-card p {
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        /* Leadership Section */
-        .leadership-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, rgba(48,43,109,0.05) 0%, rgba(220,20,60,0.05) 100%);
-        }
-
-        .leadership-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .leader-card {
-            background: white;
-            border-radius: 20px;
-            padding: 45px;
-            text-align: center;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s;
-            border: 2px solid transparent;
-        }
-
-        .leader-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(48,43,109,0.15);
-            border-color: #302b6d;
-        }
-
-        .leader-image {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            margin: 0 auto 25px;
-            object-fit: cover;
-            border: 5px solid #302b6d;
-            transition: transform 0.4s;
-        }
-
-        .leader-card:hover .leader-image {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .leader-card h3 {
-            font-size: 26px;
-            color: #302b6d;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .leader-card .position {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .leader-card p {
-            color: #555;
-            line-height: 1.8;
-        }
-
-        /* Campus Life Section */
-        .campus-life-section {
-            padding: 80px 20px;
-            background: white;
-        }
-
-        .campus-life-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .life-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .life-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            height: 300px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .life-card-large {
-            grid-column: span 2;
-        }
-
-        .life-card-wide {
-            grid-column: span 2;
-        }
-
-        .life-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .life-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-            transition: background 0.4s;
-        }
-
-        /* Different color overlays for each card */
-        .life-card:nth-child(1) .life-overlay {
-            background: linear-gradient(to top, rgba(48, 43, 109, 0.7) 0%, rgba(48, 43, 109, 0.3) 100%);
-        }
-
-        .life-card:nth-child(1):hover .life-overlay {
-            background: linear-gradient(to top, rgba(48, 43, 109, 0.85) 0%, rgba(48, 43, 109, 0.5) 100%);
-        }
-
-        .life-card:nth-child(2) .life-overlay {
-            background: linear-gradient(to top, rgba(220, 20, 60, 0.7) 0%, rgba(220, 20, 60, 0.3) 100%);
-        }
-
-        .life-card:nth-child(2):hover .life-overlay {
-            background: linear-gradient(to top, rgba(220, 20, 60, 0.85) 0%, rgba(220, 20, 60, 0.5) 100%);
-        }
-
-        .life-card:nth-child(3) .life-overlay {
-            background: linear-gradient(to top, rgba(139, 0, 0, 0.7) 0%, rgba(139, 0, 0, 0.3) 100%);
-        }
-
-        .life-card:nth-child(3):hover .life-overlay {
-            background: linear-gradient(to top, rgba(139, 0, 0, 0.85) 0%, rgba(139, 0, 0, 0.5) 100%);
-        }
-
-        .life-card:nth-child(4) .life-overlay {
-            background: linear-gradient(to top, rgba(25, 118, 210, 0.7) 0%, rgba(25, 118, 210, 0.3) 100%);
-        }
-
-        .life-card:nth-child(4):hover .life-overlay {
-            background: linear-gradient(to top, rgba(25, 118, 210, 0.85) 0%, rgba(25, 118, 210, 0.5) 100%);
-        }
-
-        .life-card:nth-child(5) .life-overlay {
-            background: linear-gradient(to top, rgba(255, 152, 0, 0.7) 0%, rgba(255, 152, 0, 0.3) 100%);
-        }
-
-        .life-card:nth-child(5):hover .life-overlay {
-            background: linear-gradient(to top, rgba(255, 152, 0, 0.85) 0%, rgba(255, 152, 0, 0.5) 100%);
-        }
-
-        .life-card:nth-child(6) .life-overlay {
-            background: linear-gradient(to top, rgba(76, 175, 80, 0.7) 0%, rgba(76, 175, 80, 0.3) 100%);
-        }
-
-        .life-card:nth-child(6):hover .life-overlay {
-            background: linear-gradient(to top, rgba(76, 175, 80, 0.85) 0%, rgba(76, 175, 80, 0.5) 100%);
-        }
-
-        .life-card:hover .life-image {
-            transform: scale(1.1);
-        }
-
-        .life-content {
-            color: white;
-            position: relative;
-            z-index: 2;
-        }
-
-        .life-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .life-content h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .life-content p {
-            font-size: 15px;
-            opacity: 0.95;
-            line-height: 1.6;
-        }
-
-        /* Placements Section */
-        .placements-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, rgba(48,43,109,0.05) 0%, rgba(220,20,60,0.05) 100%);
-        }
-
-        .placements-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .placement-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .placement-stat-card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s;
-            border: 2px solid transparent;
-        }
-
-        .placement-stat-card:hover {
-            transform: translateY(-10px);
-            border-color: #302b6d;
-            box-shadow: 0 20px 50px rgba(48,43,109,0.15);
-        }
-
-        .placement-stat-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #302b6d, #DC143C);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-            color: white;
-        }
-
-        .placement-stat-card h3 {
-            font-size: 42px;
-            color: #302b6d;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .placement-stat-card p {
-            font-size: 16px;
-            color: #666;
-        }
-
-        .recruiters-section {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-        }
-
-        .recruiters-section h3 {
-            text-align: center;
-            font-size: 32px;
-            color: #302b6d;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-
-        .recruiters-slider {
-            position: relative;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        .recruiters-track {
-            display: flex;
-            gap: 30px;
-            animation: scroll 30s linear infinite;
-        }
-
-        .recruiters-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .recruiter-logo {
-            text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            background: #f8f9fa;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-            min-width: 200px;
-            flex-shrink: 0;
-        }
-
-        .recruiter-logo:hover {
-            transform: translateY(-5px);
-            border-color: #302b6d;
-            background: white;
-            box-shadow: 0 10px 30px rgba(48, 43, 109, 0.15);
-        }
-
-        .recruiter-logo img {
-            width: 100%;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 15px;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
-        }
-
-        @media screen and (max-width:768px) {
-            .recruiter-logo img{
-                height: 45px;
-            }
-        }
-
-        .recruiter-logo:hover img {
-            filter: grayscale(0%);
-        }
-
-        .recruiter-logo p {
-            font-weight: 600;
-            color: #333;
-            font-size: 15px;
-        }
-
-        /* Events Section */
-        .events-section {
-            padding: 80px 20px;
-            background: white;
-        }
-
-        .events-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .event-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-            transition: all 0.4s;
-            border: 2px solid transparent;
-        }
-
-        .featured-event {
-            grid-column: span 2;
-        }
-
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(48,43,109,0.15);
-            border-color: #302b6d;
-        }
-
-        .event-image-wrapper {
-            position: relative;
-            overflow: hidden;
-            height: 250px;
-        }
-
-        .featured-event .event-image-wrapper {
-            height: 400px;
-        }
-
-        .event-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .event-card:hover .event-image {
-            transform: scale(1.1);
-        }
-
-        .event-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #302b6d, #DC143C);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 600;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.3);
-        }
-
-        .event-date {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: white;
-            width: 70px;
-            height: 70px;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .date-day {
-            font-size: 28px;
-            font-weight: 700;
-            color: #302b6d;
-            line-height: 1;
-        }
-
-        .date-month {
-            font-size: 14px;
-            font-weight: 600;
-            color: #666;
-            text-transform: uppercase;
-        }
-
-        .event-content {
-            padding: 25px;
-        }
-
-        .featured-event .event-content {
-            padding: 35px;
-        }
-
-        .event-category {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(48,43,109,0.1);
-            color: #302b6d;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .event-content h3 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .featured-event .event-content h3 {
-            font-size: 28px;
-        }
-
-        .event-content p {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .event-meta {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        .event-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: #888;
-        }
-
-        .event-meta i {
-            color: #302b6d;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 20px 20px;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 45px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            color: #DC143C;
-            margin-bottom: 20px;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #DC143C;
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #888;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 300px;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                padding: 100px 30px 30px;
-                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                overflow-y: auto;
-                z-index: 1000;
-                gap: 0;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links li {
-                width: 100%;
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .nav-links a {
-                padding: 15px 0;
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                margin-top: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-            }
-
-            .dropdown.active .dropdown-menu {
-                max-height: 500px;
-            }
-
-            .dropdown > a::after {
-                content: '\f107';
-                font-family: 'Font Awesome 6 Free';
-                font-weight: 900;
-                transition: transform 0.3s;
-            }
-
-            .dropdown.active > a::after {
-                transform: rotate(180deg);
-            }
-
-            .dropdown-menu a {
-                padding-left: 20px;
-                font-size: 13px;
-            }
-
-            .recruiters-track {
-                animation: scroll 20s linear infinite;
-            }
-
-            .hero h1 {
-                font-size: 38px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .section-header h2 {
-                font-size: 32px;
-            }
-
-            .topbar-content {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .campus-tabs {
-                flex-direction: column;
-            }
-
-            .tab-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .colleges-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .life-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .life-card-large,
-            .life-card-wide {
-                grid-column: span 1;
-                grid-row: span 1;
-                height: 300px;
-            }
-
-            .placement-stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .recruiters-track {
-                gap: 20px;
-            }
-
-            .recruiter-logo {
-                min-width: 150px;
-            }
-
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-event {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-
-            .featured-event .event-image-wrapper {
-                height: 250px;
-            }
-
-            .featured-event .event-content h3 {
-                font-size: 22px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Off-canvas Overlay -->
-    <div class="offcanvas-overlay" id="offcanvasOverlay"></div>
-
-    <!-- Top Bar -->
-    <div class="topbar">
-        <div class="topbar-content">
-            <div class="topbar-left">
-                <div class="topbar-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+91-44-2741-7000</span>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SRM University - Excellence in Education</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <!-- Off-canvas Overlay -->
+        <div class="offcanvas-overlay" id="offcanvasOverlay"></div>
+
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="topbar-content">
+                <div class="topbar-left">
+                    <div class="topbar-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91-44-2741-7000</span>
+                    </div>
+                    <div class="topbar-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@srmorg.com</span>
+                    </div>
                 </div>
-                <div class="topbar-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>info@srmorg.com</span>
+                <div class="topbar-right">
+                    <a href="#admissions"><i class="fas fa-graduation-cap"></i> Admissions 2026</a>
+                    <a href="#careers"><i class="fas fa-briefcase"></i> Careers</a>
                 </div>
-            </div>
-            <div class="topbar-right">
-                <a href="#admissions"><i class="fas fa-graduation-cap"></i> Admissions 2025</a>
-                <a href="#careers"><i class="fas fa-briefcase"></i> Careers</a>
             </div>
         </div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">
-                <img src="./assets/logo.jpg" width="70px" alt="">
-                <div style="display: flex;flex-direction: column;color: #302b6d;font-size: 1.2rem;">
-                    SRM UNIVERSITY 
-                    <span style="font-size: 0.6rem;color: #DC143C;">Ramapuram | West Mambalam | Tiruchirappalli</span>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="./assets/logo.jpg" width="70px" alt="">
+                    <div style="display: flex;flex-direction: column;color: #302b6d;font-size: 1.2rem;">
+                        SRM UNIVERSITY 
+                        <span style="font-size: 0.6rem;color: #DC143C;">Ramapuram | West Mambalam | Tiruchirappalli</span>
+                    </div>
                 </div>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li class="dropdown">
-                    <a href="#campuses">
-                        Campuses <i class="fas fa-chevron-down"></i>
-                    </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li class="dropdown">
+                    <span class="dropdown-span"><a href="#campuses">Campuses</a>
+
+                    <!-- separate toggle button for the chevron -->
+                    <button class="drop-toggle" aria-label="Toggle Campuses">
+                        <i class="fas fa-chevron-down"></i>
+                    </button></span>
+
                     <div class="dropdown-menu">
                         <a href="#ramapuram" class="campus-link" data-tab="ramapuram">
-                            <i class="fas fa-building"></i> Chennai Ramapuram
+                        <i class="fas fa-building"></i> Chennai Ramapuram
                         </a>
                         <a href="#mambalam" class="campus-link" data-tab="mambalam">
-                            <i class="fas fa-building"></i> West Mambalam
+                        <i class="fas fa-building"></i> West Mambalam
                         </a>
                         <a href="#trichy" class="campus-link" data-tab="trichy">
-                            <i class="fas fa-building"></i> Tiruchirappalli
+                        <i class="fas fa-building"></i> Tiruchirappalli
                         </a>
                     </div>
-                </li>
-                <li><a href="#academics">Academics</a></li>
-                <li><a href="#culture">Culture</a></li>
-                <li><a href="#campus-life">Campus Life</a></li>
-                <li><a href="#placements">Placements</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section with Video Background -->
-    <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="./assets/hero.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Empowering Minds, Shaping Futures</h1>
-            <p>India's Premier Multi-Campus University with Excellence in Education & Research</p>
-            <div class="cta-buttons">
-                <a href="#admissions" class="btn btn-primary">
-                    <i class="fas fa-user-plus"></i> Apply Now
-                </a>
-                <a href="#campuses" class="btn btn-secondary">
-                    <i class="fas fa-building"></i> Explore Campuses
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Campus Tabs Section with Colleges -->
-    <section class="campus-section" id="campuses">
-        <div class="section-header">
-            <h2>Our Three Distinguished Campuses</h2>
-            <p>Explore our world-class institutions across strategic locations</p>
-        </div>
-        <div class="campus-tabs-container">
-            <div class="campus-tabs">
-                <button class="tab-btn active" data-tab="ramapuram">
-                    Chennai Ramapuram
-                </button>
-                <button class="tab-btn" data-tab="mambalam">
-                    West Mambalam
-                </button>
-                <button class="tab-btn" data-tab="trichy">
-                    Tiruchirappalli
-                </button>
-            </div>
-
-            <!-- Ramapuram Campus Colleges -->
-            <div class="tab-content active" id="ramapuram">
-                <div class="colleges-grid">
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/eswari.png" alt="Engineering College" class="college-image">
-                            <div class="college-badge">Engineering</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>Easwari Engineering College</h3>
-                            <p>Premier engineering education with focus on emerging technologies, innovation labs, and industry-ready curriculum.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>5000+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>15 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/istchennai.jpg" alt="Science & Technology" class="college-image">
-                            <div class="college-badge">Science & Tech</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Institute of Science & Technology</h3>
-                            <p>Cutting-edge research and education in science and technology domains with state-of-the-art facilities.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>8000+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>25 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/envart.jpg" alt="Architecture" class="college-image">
-                            <div class="college-badge">Architecture</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>School of Environment, Architecture & Design</h3>
-                            <p>Sustainable design education preparing future architects and planners for green building initiatives.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>1500+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>6 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/scitech.jpg" alt="Humanities" class="college-image">
-                            <div class="college-badge">Humanities</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRMIST - College of Science & Humanities</h3>
-                            <p>Interdisciplinary programs in humanities and social sciences promoting research and academic excellence.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>2500+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>10 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/dental.jpg" alt="Dental College" class="college-image">
-                            <div class="college-badge">Dental</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Dental College and Hospital</h3>
-                            <p>Comprehensive dental education with advanced clinical facilities and modern equipment.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>800+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-tooth"></i>
-                                    <span>6 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/prime.jpg" alt="Hospital" class="college-image">
-                            <div class="college-badge">Healthcare</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Prime Hospital</h3>
-                            <p>Advanced multi-specialty healthcare facility providing excellent medical services and clinical training.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-bed"></i>
-                                    <span>500+ Beds</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-stethoscope"></i>
-                                    <span>30+ Specialties</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    </li>
+                    <li><a href="#academics">Academics</a></li>
+                    <li><a href="#culture">Culture</a></li>
+                    <li><a href="#campus-life">Campus Life</a></li>
+                    <li><a href="#placements">Placements</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-
-            <!-- Trichy Campus Colleges -->
-            <div class="tab-content" id="trichy">
-                <div class="colleges-grid">
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/medicalcollegetrichy.jpg" alt="Medical College" class="college-image">
-                            <div class="college-badge">Medical</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>Trichy SRM Medical College Hospital and Research Centre</h3>
-                            <p>Comprehensive medical education with state-of-the-art teaching hospital and advanced research facilities.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>1000+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-hospital"></i>
-                                    <span>750+ Beds</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/medicalcollegetrichy.jpg" alt="Allied Health" class="college-image">
-                            <div class="college-badge">Allied Health</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>Trichy SRM Medical College Hospital - Allied Health Sciences</h3>
-                            <p>Specialized programs in allied health sciences including physiotherapy, lab technology, and radiology.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>500+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>8 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/scienceandtech.jpg" alt="Science & Tech" class="college-image">
-                            <div class="college-badge">Science & Tech</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Institute of Science and Technology - Tiruchirappalli</h3>
-                            <p>Advanced science and technology programs with focus on research and innovation.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>1500+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>12 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/trp.jpeg" alt="Engineering" class="college-image">
-                            <div class="college-badge">Engineering</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM TRP Engineering College</h3>
-                            <p>Engineering programs with emphasis on innovation, practical learning, and industry collaboration.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>2000+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>10 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="https://asc.srmtrichy.edu.in/wp-content/uploads/2023/02/College-Photo-for-Governing-Council-3-scaled.jpg" alt="Arts & Science" class="college-image">
-                            <div class="college-badge">Arts & Science</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Trichy Arts and Science College</h3>
-                            <p>Liberal arts education fostering critical thinking, creativity, and holistic development of students.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>3000+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>12 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/nursing.jpg" alt="Nursing" class="college-image">
-                            <div class="college-badge">Nursing</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Trichy College of Nursing</h3>
-                            <p>Professional nursing education with clinical training excellence and compassionate care focus.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>600+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>5 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="https://asc.srmtrichy.edu.in/wp-content/uploads/2023/02/College-Photo-for-Governing-Council-3-scaled.jpg" alt="Hotel Management" class="college-image">
-                            <div class="college-badge">Hospitality</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRMIST - Institute of Hotel Management</h3>
-                            <p>World-class hospitality education with industry exposure and practical training facilities.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>400+ Students</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>4 Programs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        </nav>
+        <div id="floatBtn" class="floating-social-btn">
+            <button class="social-toggle-btn" id="socialToggle">
+                <i class="fas fa-plus"></i>
+            </button>
+        <div class="social-links-container" id="socialLinks">
+            <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/yourpage" target="_blank" class="social-link instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/yourchannel" target="_blank" class="social-link youtube" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/yourcompany" target="_blank" class="social-link linkedin" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://wa.me/919876543210" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        </div>
+        <!-- Floating Bar -->
+         
+        <!-- Hero Section with Video Background -->
+        <section class="hero" id="home">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="./assets/hero.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Empowering Minds, Shaping Futures</h1>
+                <p>India's Premier Multi-Campus University with Excellence in Education & Research</p>
+                <div class="cta-buttons">
+                    <a href="#admissions" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Apply Now
+                    </a>
+                    <a href="#campuses" class="btn btn-secondary">
+                        <i class="fas fa-building"></i> Explore Campuses
+                    </a>
                 </div>
             </div>
+        </section>
 
-            <!-- Mambalam Campus Colleges -->
-            <div class="tab-content" id="mambalam">
-                <div class="colleges-grid">
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/prime.jpg" alt="Hospital" class="college-image">
-                            <div class="college-badge">Healthcare</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Prime Hospital</h3>
-                            <p>Advanced multi-specialty healthcare facility providing excellent medical services and clinical training.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-bed"></i>
-                                    <span>500+ Beds</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-stethoscope"></i>
-                                    <span>30+ Specialties</span>
+        <!-- Campus Tabs Section with Colleges -->
+        <section class="campus-section" id="campuses">
+            <div class="section-header">
+                <h2>Our Three Distinguished Campuses</h2>
+                <p>Explore our world-class institutions across strategic locations</p>
+            </div>
+            <div class="campus-tabs-container">
+                <div class="campus-tabs">
+                    <button class="tab-btn active" data-tab="ramapuram">
+                        Chennai Ramapuram
+                    </button>
+                    <button class="tab-btn" data-tab="mambalam">
+                        West Mambalam
+                    </button>
+                    <button class="tab-btn" data-tab="trichy">
+                        Tiruchirappalli
+                    </button>
+                </div>
+
+                <!-- Ramapuram Campus Colleges -->
+                <div class="tab-content active" id="ramapuram">
+                    <div class="colleges-grid">
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/eswari.png" alt="Engineering College" class="college-image">
+                                <div class="college-badge">Engineering</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>Easwari Engineering College</h3>
+                                <p>Premier engineering education with focus on emerging technologies, innovation labs, and industry-ready curriculum.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>5000+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>15 Programs</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="college-card">
-                        <div class="college-image-container">
-                            <img src="./assets/school.jpg" alt="School" class="college-image">
-                            <div class="college-badge">School</div>
-                        </div>
-                        <div class="college-content">
-                            <h3>SRM Nightingale Higher Secondary School</h3>
-                            <p>Quality secondary education with focus on holistic development and academic excellence.</p>
-                            <div class="college-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>1200+ Students</span>
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/istchennai.jpg" alt="Science & Technology" class="college-image">
+                                <div class="college-badge">Science & Tech</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Institute of Science & Technology</h3>
+                                <p>Cutting-edge research and education in science and technology domains with state-of-the-art facilities.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>8000+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>25 Programs</span>
+                                    </div>
                                 </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-book"></i>
-                                    <span>CBSE Board</span>
+                            </div>
+                        </div>
+
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/envart.jpg" alt="Architecture" class="college-image">
+                                <div class="college-badge">Architecture</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>School of Environment, Architecture & Design</h3>
+                                <p>Sustainable design education preparing future architects and planners for green building initiatives.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>1500+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>6 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/scitech.jpg" alt="Humanities" class="college-image">
+                                <div class="college-badge">Humanities</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRMIST - College of Science & Humanities</h3>
+                                <p>Interdisciplinary programs in humanities and social sciences promoting research and academic excellence.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>2500+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>10 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/dental.jpg" alt="Dental College" class="college-image">
+                                <div class="college-badge">Dental</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Dental College and Hospital</h3>
+                                <p>Comprehensive dental education with advanced clinical facilities and modern equipment.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>800+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-tooth"></i>
+                                        <span>6 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/prime.jpg" alt="Hospital" class="college-image">
+                                <div class="college-badge">Healthcare</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Prime Hospital</h3>
+                                <p>Advanced multi-specialty healthcare facility providing excellent medical services and clinical training.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-bed"></i>
+                                        <span>500+ Beds</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-stethoscope"></i>
+                                        <span>30+ Specialties</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Trichy Campus Colleges -->
+                <div class="tab-content" id="trichy">
+                    <div class="colleges-grid">
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/medicalcollegetrichy.jpg" alt="Medical College" class="college-image">
+                                <div class="college-badge">Medical</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>Trichy SRM Medical College Hospital and Research Centre</h3>
+                                <p>Comprehensive medical education with state-of-the-art teaching hospital and advanced research facilities.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>1000+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-hospital"></i>
+                                        <span>750+ Beds</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/medicalcollegetrichy.jpg" alt="Allied Health" class="college-image">
+                                <div class="college-badge">Allied Health</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>Trichy SRM Medical College Hospital - Allied Health Sciences</h3>
+                                <p>Specialized programs in allied health sciences including physiotherapy, lab technology, and radiology.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>500+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>8 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/scienceandtech.jpg" alt="Science & Tech" class="college-image">
+                                <div class="college-badge">Science & Tech</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Institute of Science and Technology - Tiruchirappalli</h3>
+                                <p>Advanced science and technology programs with focus on research and innovation.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>1500+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>12 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/trp.jpeg" alt="Engineering" class="college-image">
+                                <div class="college-badge">Engineering</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM TRP Engineering College</h3>
+                                <p>Engineering programs with emphasis on innovation, practical learning, and industry collaboration.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>2000+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>10 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="https://asc.srmtrichy.edu.in/wp-content/uploads/2023/02/College-Photo-for-Governing-Council-3-scaled.jpg" alt="Arts & Science" class="college-image">
+                                <div class="college-badge">Arts & Science</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Trichy Arts and Science College</h3>
+                                <p>Liberal arts education fostering critical thinking, creativity, and holistic development of students.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>3000+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>12 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/nursing.jpg" alt="Nursing" class="college-image">
+                                <div class="college-badge">Nursing</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Trichy College of Nursing</h3>
+                                <p>Professional nursing education with clinical training excellence and compassionate care focus.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>600+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>5 Programs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="https://asc.srmtrichy.edu.in/wp-content/uploads/2023/02/College-Photo-for-Governing-Council-3-scaled.jpg" alt="Hotel Management" class="college-image">
+                                <div class="college-badge">Hospitality</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRMIST - Institute of Hotel Management</h3>
+                                <p>World-class hospitality education with industry exposure and practical training facilities.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>400+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>4 Programs</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Mambalam Campus Colleges -->
+                <div class="tab-content" id="mambalam">
+                    <div class="colleges-grid">
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/prime.jpg" alt="Hospital" class="college-image">
+                                <div class="college-badge">Healthcare</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Prime Hospital</h3>
+                                <p>Advanced multi-specialty healthcare facility providing excellent medical services and clinical training.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-bed"></i>
+                                        <span>500+ Beds</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-stethoscope"></i>
+                                        <span>30+ Specialties</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="college-card">
+                            <div class="college-image-container">
+                                <img src="./assets/school.jpg" alt="School" class="college-image">
+                                <div class="college-badge">School</div>
+                            </div>
+                            <div class="college-content">
+                                <h3>SRM Nightingale Higher Secondary School</h3>
+                                <p>Quality secondary education with focus on holistic development and academic excellence.</p>
+                                <div class="college-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>1200+ Students</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>CBSE Board</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-     <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
-                <h3 class="counter" data-target="50000">0</h3>
-                <p>Students Enrolled</p>
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3 class="counter" data-target="50000">0</h3>
+                    <p>Students Enrolled</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="counter" data-target="3000">0</h3>
+                    <p>Faculty Members</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                    <h3 class="counter" data-target="100">0</h3>
+                    <p>Programs Offered</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-award"></i></div>
+                    <h3 class="counter" data-target="95">0</h3>
+                    <p>Placement Rate %</p>
+                </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                <h3 class="counter" data-target="3000">0</h3>
-                <p>Faculty Members</p>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-book-open"></i></div>
-                <h3 class="counter" data-target="100">0</h3>
-                <p>Programs Offered</p>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-award"></i></div>
-                <h3 class="counter" data-target="95">0</h3>
-                <p>Placement Rate %</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Teaching Culture Section -->
-    <section class="culture-section" id="culture">
-        <div class="section-header">
-            <h2>Our Teaching Culture</h2>
-            <p>Innovation, Excellence, and Student-Centric Learning</p>
-        </div>
-        <div class="culture-grid">
-            <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-lightbulb"></i></div>
-                <h3>Innovative Pedagogy</h3>
-                <p>Blending traditional teaching with modern technology, interactive learning, and hands-on experience.</p>
+        <!-- Teaching Culture Section -->
+        <section class="culture-section" id="culture">
+            <div class="section-header">
+                <h2>Our Teaching Culture</h2>
+                <p>Innovation, Excellence, and Student-Centric Learning</p>
             </div>
-            <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-flask"></i></div>
-                <h3>Research Focus</h3>
-                <p>Encouraging faculty and students to engage in cutting-edge research and publications.</p>
-            </div>
-            <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-globe"></i></div>
-                <h3>Global Perspective</h3>
-                <p>International collaborations, exchange programs, and exposure to global best practices.</p>
-            </div>
-            <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-industry"></i></div>
-                <h3>Industry Integration</h3>
-                <p>Strong industry partnerships ensuring curriculum relevance and career readiness.</p>
-            </div>
-            <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-hands-helping"></i></div>
-                <h3>Mentorship</h3>
-                <p>Dedicated faculty mentors guiding students through academic and personal development.</p>
-            </div>
-            <div class="culture-card">
-                <div class="culture-icon"><i class="fas fa-rocket"></i></div>
-                <h3>Entrepreneurship</h3>
-                <p>Fostering innovation and startup culture through incubation centers and funding support.</p>
-            </div>
-        </div>
-    </section>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Innovative Pedagogy</h3>
+                    <p>Blending traditional teaching with modern technology, interactive learning, and hands-on experience.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Research Focus</h3>
+                    <p>Encouraging faculty and students to engage in cutting-edge research and publications.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Perspective</h3>
+                    <p>International collaborations, exchange programs, and exposure to global best practices.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon"><i class="fas fa-industry"></i></div>
+                    <h3>Industry Integration</h3>
+                    <p>Strong industry partnerships ensuring curriculum relevance and career readiness.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Mentorship</h3>
+                    <p>Dedicated faculty mentors guiding students through academic and personal development.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Entrepreneurship</h3>
+                    <p>Fostering innovation and startup culture through incubation centers an</p>
+                </div>
+                </div></section>
 
-    <!-- Leadership Section -->
+                <!-- Leadership Section -->
     <section class="leadership-section" id="leadership">
         <div class="section-header">
             <h2>Leadership Excellence</h2>
@@ -2186,166 +885,6 @@
             <p>&copy; 2025 SRM University. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // Mobile Menu Toggle with Off-canvas
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        const offcanvasOverlay = document.getElementById('offcanvasOverlay');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            offcanvasOverlay.classList.toggle('active');
-        });
-
-        offcanvasOverlay.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
-            offcanvasOverlay.classList.remove('active');
-        });
-
-        // Mobile Dropdown Toggle
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
-            const link = dropdown.querySelector('a');
-            link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-
-        // Campus Link Navigation from Dropdown
-        const campusLinks = document.querySelectorAll('.campus-link');
-        campusLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetTab = link.getAttribute('data-tab');
-                
-                // Activate the corresponding tab
-                const tabButtons = document.querySelectorAll('.tab-btn');
-                const tabContents = document.querySelectorAll('.tab-content');
-                
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                const targetButton = document.querySelector(`[data-tab="${targetTab}"]`);
-                if (targetButton) {
-                    targetButton.classList.add('active');
-                }
-                document.getElementById(targetTab).classList.add('active');
-                
-                // Close mobile menu
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-                offcanvasOverlay.classList.remove('active');
-                
-                // Scroll to campus section
-                document.getElementById('campuses').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (!this.classList.contains('campus-link')) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        navLinks.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                        offcanvasOverlay.classList.remove('active');
-                    }
-                }
-            });
-        });
-
-        // Campus Tabs
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const targetTab = button.getAttribute('data-tab');
-                
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                button.classList.add('active');
-                document.getElementById(targetTab).classList.add('active');
-            });
-        });
-
-        // Animated Counter
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-        let hasAnimated = false;
-
-        const animateCounters = () => {
-            if (hasAnimated) return;
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const increment = target / speed;
-                
-                const updateCount = () => {
-                    const count = +counter.innerText;
-                    
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(updateCount, 10);
-                    } else {
-                        counter.innerText = target.toLocaleString() + (target === 95 ? '' : '+');
-                    }
-                };
-                
-                updateCount();
-            });
-            
-            hasAnimated = true;
-        };
-
-        // Intersection Observer for Counter Animation
-        const statsSection = document.querySelector('.stats-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                }
-            });
-        }, { threshold: 0.5 });
-
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
-
-        // Scroll Animation for Cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '0';
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.college-card, .culture-card, .leader-card').forEach(el => {
-            cardObserver.observe(el);
-        });
-    </script>
+    <script src="./scripts.js"></script>
 </body>
 </html>
