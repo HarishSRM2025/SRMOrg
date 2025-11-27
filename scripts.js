@@ -165,7 +165,7 @@ document.addEventListener('click', (e) => {
 
         // Scroll Animation for Cards
         const observerOptions = {
-            threshold: 0.1,
+            threshold: 0.5,
             rootMargin: '0px 0px -50px 0px'
         };
 
@@ -198,4 +198,47 @@ document.addEventListener('click', (e) => {
                 socialToggle.classList.remove('active');
                 socialLinksContainer.classList.remove('active');
             }
+        });
+
+         // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Gym Image Change on Card Click
+        const gymFeatureBoxes = document.querySelectorAll('.infra-gym-feature-box');
+        const gymMainImage = document.getElementById('gymMainImage');
+
+        gymFeatureBoxes.forEach((box, index) => {
+            box.addEventListener('click', function() {
+                // Remove active class from all boxes
+                gymFeatureBoxes.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked box
+                this.classList.add('active');
+                
+                // Change the main image
+                const newImageSrc = this.getAttribute('data-image');
+                gymMainImage.src = newImageSrc;
+            });
+        });
+
+        // Set first card as active by default
+        if (gymFeatureBoxes.length > 0) {
+            gymFeatureBoxes[0].classList.add('active');
+        }
+
+       
+
+        document.querySelectorAll('.infra-hostel-feature-card, .infra-sports-card, .infra-transport-card, .infra-dining-card, .infra-lab-card').forEach(el => {
+            observer.observe(el);
         });

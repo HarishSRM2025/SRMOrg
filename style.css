@@ -895,7 +895,7 @@ body {
 .recruiters-track {
     display: flex;
     gap: 30px;
-    animation: scroll 30s linear infinite;
+    animation: scroll 8s linear infinite;
 }
 
 .recruiters-track:hover {
@@ -1519,3 +1519,825 @@ color: #302b6d;
         font-size: 18px;
     }
 }
+
+ /* Top Bar */
+        
+
+        /* Hero Section */
+        .infra-hero {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(135deg, rgba(48,43,109,0.9) 0%, rgba(220,20,60,0.9) 100%),
+                        url('https://images.unsplash.com/photo-1562774053-701939374585?w=1600') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .infra-hero-content h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .infra-hero-content p {
+            font-size: 24px;
+            margin-bottom: 35px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        /* Stats Bar */
+        .infra-stats-bar {
+            background: white;
+            padding: 40px 20px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .infra-stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .infra-stat-item {
+            background: linear-gradient(135deg, rgba(48,43,109,0.05), rgba(220,20,60,0.05));
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .infra-stat-item:hover {
+            border-color: #302b6d;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(48,43,109,0.2);
+        }
+
+        .infra-stat-icon {
+            font-size: 40px;
+            color: #302b6d;
+            margin-bottom: 15px;
+        }
+
+        .infra-stat-item h3 {
+            font-size: 36px;
+            color: #302b6d;
+            margin-bottom: 5px;
+        }
+
+        .infra-stat-item p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* Section Header */
+        .infra-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .infra-section-header h2 {
+            font-size: 44px;
+            color: #302b6d;
+            margin-bottom: 15px;
+        }
+
+        .infra-section-header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Hostel Section */
+        .infra-hostel-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .infra-hostel-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-hostel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .infra-hostel-main {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .infra-hostel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .infra-hostel-main:hover .infra-hostel-image {
+            transform: scale(1.05);
+        }
+
+        .infra-hostel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(48,43,109,0.95) 0%, transparent 100%);
+            padding: 40px;
+            color: white;
+        }
+
+        .infra-hostel-overlay h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .infra-hostel-overlay p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .infra-hostel-feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+        }
+
+        .infra-hostel-feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(48,43,109,0.2);
+        }
+
+        .infra-hostel-feature-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .infra-hostel-feature-content {
+            padding: 25px;
+        }
+
+        .infra-hostel-feature-content h4 {
+            font-size: 22px;
+            color: #302b6d;
+            margin-bottom: 12px;
+        }
+
+        .infra-hostel-feature-content p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .infra-hostel-amenities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .infra-amenity-card {
+            background: linear-gradient(135deg, rgba(48,43,109,0.05), rgba(220,20,60,0.05));
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .infra-amenity-card:hover {
+            background: linear-gradient(135deg, #302b6d, #DC143C);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .infra-amenity-icon {
+            font-size: 45px;
+            color: #302b6d;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        .infra-amenity-card:hover .infra-amenity-icon {
+            color: white;
+        }
+
+        .infra-amenity-card h5 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Sports Section */
+        .infra-sports-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(48,43,109,0.03), rgba(220,20,60,0.03));
+        }
+
+        .infra-sports-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-sports-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .infra-sports-card {
+            position: relative;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .infra-sports-card-large {
+            grid-row: span 2;
+            height: 730px;
+        }
+
+        .infra-sports-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .infra-sports-card:hover .infra-sports-image {
+            transform: scale(1.1);
+        }
+
+        .infra-sports-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(48,43,109,0.9) 0%, transparent 100%);
+            padding: 30px;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .infra-sports-card:hover .infra-sports-overlay {
+            background: linear-gradient(to top, rgba(220,20,60,0.9) 0%, transparent 100%);
+        }
+
+        .infra-sports-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .infra-sports-overlay h4 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .infra-sports-overlay p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Gym Section */
+        .infra-gym-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .infra-gym-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-gym-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+            align-items: start;
+        }
+
+        .infra-gym-main-image {
+            position: relative;
+            height: 100%;
+            min-height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 100px;
+        }
+
+        .infra-gym-features {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .infra-gym-feature-box {
+            background: linear-gradient(135deg, rgba(48,43,109,0.05), rgba(220,20,60,0.05));
+            padding:15px 35px;
+            border-radius: 15px;
+            border-left: 5px solid #302b6d;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .infra-gym-feature-box:hover,
+        .infra-gym-feature-box.active {
+            background: linear-gradient(135deg, #302b6d, #DC143C);
+            color: white;
+            border-left-color: white;
+            transform: translateX(10px);
+        }
+
+        .infra-gym-feature-icon {
+            font-size: 35px;
+            color: #302b6d;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        .infra-gym-feature-box:hover .infra-gym-feature-icon,
+        .infra-gym-feature-box.active .infra-gym-feature-icon {
+            color: white;
+        }
+
+        .infra-gym-feature-box h4 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .infra-gym-feature-box p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Transport Section */
+        .infra-transport-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(48,43,109,0.03), rgba(220,20,60,0.03));
+        }
+
+        .infra-transport-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-transport-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .infra-transport-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+        }
+
+        .infra-transport-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(48,43,109,0.2);
+        }
+
+        .infra-transport-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .infra-transport-content {
+            padding: 35px;
+        }
+
+        .infra-transport-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #302b6d, #DC143C);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .infra-transport-content h4 {
+            font-size: 26px;
+            color: #302b6d;
+            margin-bottom: 15px;
+        }
+
+        .infra-transport-content p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .infra-transport-features {
+            list-style: none;
+        }
+
+        .infra-transport-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+        }
+
+        .infra-transport-features i {
+            color: #302b6d;
+            font-size: 18px;
+        }
+
+        /* Dining Section */
+        .infra-dining-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .infra-dining-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-dining-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .infra-dining-card {
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .infra-dining-card:hover .infra-dining-image {
+            transform: scale(1.1);
+        }
+
+        .infra-dining-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(48,43,109,0.9) 0%, rgba(48,43,109,0.3) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: white;
+        }
+
+        .infra-dining-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .infra-dining-overlay h4 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .infra-dining-overlay p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Library Section */
+        .infra-library-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(48,43,109,0.03), rgba(220,20,60,0.03));
+        }
+
+        .infra-library-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-library-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .infra-library-image-wrapper {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .infra-library-content {
+            padding: 40px;
+        }
+
+        .infra-library-content h3 {
+            font-size: 38px;
+            color: #302b6d;
+            margin-bottom: 20px;
+        }
+
+        .infra-library-content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .infra-library-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .infra-library-stat {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .infra-library-stat h5 {
+            font-size: 32px;
+            color: #302b6d;
+            margin-bottom: 5px;
+        }
+
+        .infra-library-stat p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Medical Section */
+        .infra-medical-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .infra-medical-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-medical-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .infra-medical-content h3 {
+            font-size: 38px;
+            color: #302b6d;
+            margin-bottom: 20px;
+        }
+
+        .infra-medical-content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .infra-medical-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .infra-medical-feature {
+            background: linear-gradient(135deg, rgba(48,43,109,0.05), rgba(220,20,60,0.05));
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .infra-medical-feature:hover {
+            background: linear-gradient(135deg, #302b6d, #DC143C);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .infra-medical-feature i {
+            font-size: 35px;
+            color: #302b6d;
+            transition: color 0.3s;
+        }
+
+        .infra-medical-feature:hover i {
+            color: white;
+        }
+
+        .infra-medical-feature h5 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .infra-medical-feature p {
+            font-size: 13px;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .infra-medical-image-wrapper {
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Labs Section */
+        .infra-labs-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #302b6d 0%, #DC143C 100%);
+            color: white;
+        }
+
+        .infra-labs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .infra-labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .infra-lab-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.4s;
+        }
+
+        .infra-lab-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-10px);
+            border-color: white;
+        }
+
+        .infra-lab-icon {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .infra-lab-card h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .infra-lab-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .infra-footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .infra-footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 45px;
+            margin-bottom: 40px;
+        }
+
+        .infra-footer-section h3 {
+            color: #DC143C;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .infra-footer-section ul {
+            list-style: none;
+        }
+
+        .infra-footer-section ul li {
+            padding: 10px 0;
+        }
+
+        .infra-footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .infra-footer-section a:hover {
+            color: #DC143C;
+            padding-left: 5px;
+        }
+
+        .infra-footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .infra-hero-content h1 {
+                font-size: 36px;
+            }
+
+            .infra-hero-content p {
+                font-size: 18px;
+            }
+
+            .infra-section-header h2 {
+                font-size: 32px;
+            }
+
+            .infra-hostel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .infra-hostel-main {
+                height: 400px;
+            }
+
+            .infra-sports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .infra-sports-card-large {
+                grid-row: span 1;
+                height: 350px;
+            }
+
+            .infra-gym-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .infra-gym-main-image {
+                height: 400px;
+                position: relative;
+                top: 0;
+            }
+
+            .infra-transport-grid,
+            .infra-dining-grid,
+            .infra-library-showcase,
+            .infra-medical-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .infra-nav-links {
+                display: none;
+            }
+        }
