@@ -52,73 +52,62 @@ document.addEventListener('click', (e) => {
                 dropdown.classList.toggle("active");
             });
         });
+
+
+
         // Campus Link Navigation from Dropdown
-        const campusLinks = document.querySelectorAll('.campus-link');
-        campusLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetTab = link.getAttribute('data-tab');
-                
-                // Activate the corresponding tab
-                const tabButtons = document.querySelectorAll('.tab-btn');
-                const tabContents = document.querySelectorAll('.tab-content');
-                
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                const targetButton = document.querySelector(`[data-tab="${targetTab}"]`);
-                if (targetButton) {
-                    targetButton.classList.add('active');
-                }
-                document.getElementById(targetTab).classList.add('active');
-                
-                // Close mobile menu
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-                offcanvasOverlay.classList.remove('active');
-                
-                // Scroll to campus section
-                document.getElementById('campuses').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const params = new URLSearchParams(window.location.search);
+            console.log(params);
+            
+            const tabFromURL = params.get("tab");
+            console.log(tabFromURL);
+
+            if (tabFromURL) {
+                activateTab(tabFromURL);
+                scrollToSection(tabFromURL);
+            }
+
+            document.querySelectorAll(".campus-link").forEach(link => {
+                link.addEventListener("click", function(e) {  
+                    console.log(this.dataset.tab);
+                                      
+                    const tabName = this.dataset.tab;
+                    activateTab(tabName);
                 });
             });
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (!this.classList.contains('campus-link')) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        navLinks.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                        offcanvasOverlay.classList.remove('active');
-                    }
+            
+            function scrollToSection(tabName) {
+                const section = document.getElementById("campuses");
+                if (section) {
+                    setTimeout(() => {
+                        section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }, 300);
                 }
+            }
+            
+        })  
+        // Active Tabs
+        function activateTab(tabName) {
+            document.querySelectorAll(".tab-btn").forEach(btn => {
+                btn.classList.remove("active");
             });
+            document.querySelector(`.tab-btn[data-tab="${tabName}"]`).classList.add("active");
+            document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+            document.getElementById(tabName).classList.add("active");
+        }
+        // Campus Link Navigation While Clicking
+        document.querySelectorAll(".tab-btn").forEach(btn => {
+            btn.addEventListener("click",(e)=>{
+                activateTab(e.target.dataset.tab)
+            })
         });
 
-        // Campus Tabs
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const targetTab = button.getAttribute('data-tab');
-                
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                button.classList.add('active');
-                document.getElementById(targetTab).classList.add('active');
-            });
-        });
+      
+
+
+        
 
         // Animated Counter
         const counters = document.querySelectorAll('.counter');
