@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRM University - World-Class Infrastructure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="fav icon" href="assets/logo.jpg">
+    <link rel="stylesheet" href="./assets/css/InfraTabs.css">
+</head>
+<body>
+   <div class="offcanvas-overlay" id="offcanvasOverlay"></div>
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="topbar-content">
+                <div class="topbar-left">
+                    <div class="topbar-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91-44-2741-7000</span>
+                    </div>
+                    <div class="topbar-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@srmorg.com</span>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <a href="#admissions"><i class="fas fa-graduation-cap"></i> Admissions 2026</a>
+                    <a href="#careers"><i class="fas fa-briefcase"></i> Careers</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="./assets/logo.jpg"  alt="">
+                    <div style="display: flex;flex-direction: column;color: #302b6d;font-size: 1.2rem;">
+                        SRM Group of Institution 
+                        <span style="font-size: 0.6rem;color: #DC143C;">Ramapuram | West Mambalam | Tiruchirappalli</span>
+                    </div>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                    <span class="dropdown-span"><a href="index.html#campuses">Campuses</a>
+
+                    <!-- separate toggle button for the chevron -->
+                    <button class="drop-toggle" aria-label="Toggle Campuses">
+                        <i class="fas fa-chevron-down"></i>
+                    </button></span>
+
+                    <div class="dropdown-menu">
+                        <a href="index.html?tab=ramapuram" class="campus-link">
+                        <i class="fas fa-building"></i> Chennai Ramapuram
+                        </a>
+                        <a href="index.html?tab=mambalam" class="campus-link">
+                        <i class="fas fa-building"></i> West Mambalam
+                        </a>
+                        <a href="index.html?tab=trichy" class="campus-link">
+                        <i class="fas fa-building"></i> Tiruchirappalli
+                        </a>
+                    </div>
+                    </li>
+                    <li class="dropdown">
+                    <span class="dropdown-span"><a href="infrastructure.html">Infrastructure</a>
+
+                    <!-- separate toggle button for the chevron -->
+                    <button class="drop-toggle" aria-label="Toggle Campuses">
+                        <i class="fas fa-chevron-down"></i>
+                    </button></span>
+
+                    <div class="dropdown-menu">
+                         <a href="infrastructure.html#hostel">Hostel</a>
+                         <a href="infrastructure.html#sports">Sports</a>
+                         <a href="infrastructure.html#gym">Gymnasium</a>
+                         <a href="infrastructure.html#transport">Transport</a>
+                         <a href="infrastructure.html#dining">Dining</a>
+                         <a href="infrastructure.html#library">Library</a>
+                         <a href="infrastructure.html#medical">Medical</a>
+                         <a href="infrastructure.html#labs">Labs</a>
+                    </div>
+                    </li>
+                    <li><a href="index.html#academics">Academics</a></li>
+                    <li><a href="index.html#culture">Culture</a></li>
+                    <li><a href="index.html#campus-life">Campus Life</a></li>
+                    <li><a href="index.html#placements">Placements</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+        <div id="floatBtn" class="floating-social-btn">
+            <button class="social-toggle-btn" id="socialToggle">
+                <i class="fas fa-plus"></i>
+            </button>
+        <div class="social-links-container" id="socialLinks">
+            <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/yourpage" target="_blank" class="social-link instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/yourchannel" target="_blank" class="social-link youtube" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/yourcompany" target="_blank" class="social-link linkedin" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://wa.me/919876543210" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section class="infra-hero">
+        <div class="infra-hero-content">
+            <h1>World-Class Infrastructure</h1>
+            <p>Experience excellence in every facility - Modern, Safe, and Student-Centric</p>
+        </div>
+    </section>
+
+    
+     <div class="container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul id="sidebarMenu"></ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div id="departmentDetail" class="department-detail"></div>
+        </main>
+    </div>
+
+    
+    <footer class="infra-footer">
+        <div class="infra-footer-content">
+            <div class="infra-footer-section">
+                <h3>SRM University</h3>
+                <p>Experience world-class infrastructure designed to nurture excellence and innovation in education.</p>
+            </div>
+            <div class="infra-footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#hostel">Hostel Facilities</a></li>
+                    <li><a href="#sports">Sports Complex</a></li>
+                    <li><a href="#transport">Transport Services</a></li>
+                    <li><a href="#dining">Dining Options</a></li>
+                </ul>
+            </div>
+            <div class="infra-footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>+91-44-2741-7000</li>
+                    <li>info@srmist.edu.in</li>
+                    <li>Chennai, Tamil Nadu</li>
+                </ul>
+            </div>
+        </div>
+        <div class="infra-footer-bottom">
+            <p>&copy; 2025 SRM University. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="./assets/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
+    <script src="./assets/js/infra_college_data.js"></script>
+    <script src="./assets/js/infra_college_logic.js"></script>
+</body>
+</html>
