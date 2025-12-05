@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="fav icon" href="assets/logo.jpg">
-
+    <link rel="stylesheet" href="./assets/css/InfraTabs.css">
 </head>
 <body>
    <div class="offcanvas-overlay" id="offcanvasOverlay"></div>
@@ -35,7 +35,7 @@
         <nav class="navbar">
             <div class="nav-content">
                 <div class="logo">
-                    <img src="./assets/logo.jpg"  alt="">
+                    <img src="./assets/images/logo.jpg"  alt="">
                     <div style="display: flex;flex-direction: column;color: #302b6d;font-size: 1.2rem;">
                         SRM Group of Institution 
                         <span style="font-size: 0.6rem;color: #DC143C;">Ramapuram | West Mambalam | Tiruchirappalli</span>
@@ -63,24 +63,8 @@
                         </a>
                     </div>
                     </li>
-                    <li class="dropdown">
-                    <span class="dropdown-span"><a href="infrastructure.html">Infrastructure</a>
-
-                    <!-- separate toggle button for the chevron -->
-                    <button class="drop-toggle" aria-label="Toggle Campuses">
-                        <i class="fas fa-chevron-down"></i>
-                    </button></span>
-
-                    <div class="dropdown-menu">
-                         <a href="infrastructure.html#hostel">Hostel</a>
-                         <a href="infrastructure.html#sports">Sports</a>
-                         <a href="infrastructure.html#gym">Gymnasium</a>
-                         <a href="infrastructure.html#transport">Transport</a>
-                         <a href="infrastructure.html#dining">Dining</a>
-                         <a href="infrastructure.html#library">Library</a>
-                         <a href="infrastructure.html#medical">Medical</a>
-                         <a href="infrastructure.html#labs">Labs</a>
-                    </div>
+                    <li>
+                        <a href="infrastructure.html">Our Institutions</a>
                     </li>
                     <li><a href="index.html#academics">Academics</a></li>
                     <li><a href="index.html#culture">Culture</a></li>
@@ -118,466 +102,29 @@
             </a>
         </div>
         </div>
+    </div>
     <!-- Hero Section -->
     <section class="infra-hero">
         <div class="infra-hero-content">
-            <h1>World-Class Infrastructure</h1>
-            <p>Experience excellence in every facility - Modern, Safe, and Student-Centric</p>
+            <h1>Our Institutions</h1>
+            <p>Discover our diverse institutions, each dedicated to delivering quality education, innovation, and holistic development.</p>
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <section class="infra-stats-bar">
-        <div class="infra-stats-container">
-            <div class="infra-stat-item">
-                <div class="infra-stat-icon"><i class="fas fa-building"></i></div>
-                <h3>15+</h3>
-                <p>Hostel Blocks</p>
-            </div>
-            <div class="infra-stat-item">
-                <div class="infra-stat-icon"><i class="fas fa-futbol"></i></div>
-                <h3>30+</h3>
-                <p>Sports Facilities</p>
-            </div>
-            <div class="infra-stat-item">
-                <div class="infra-stat-icon"><i class="fas fa-bus"></i></div>
-                <h3>200+</h3>
-                <p>Transport Vehicles</p>
-            </div>
-            <div class="infra-stat-item">
-                <div class="infra-stat-icon"><i class="fas fa-utensils"></i></div>
-                <h3>10+</h3>
-                <p>Dining Halls</p>
-            </div>
-            <div class="infra-stat-item">
-                <div class="infra-stat-icon"><i class="fas fa-flask"></i></div>
-                <h3>100+</h3>
-                <p>Research Labs</p>
-            </div>
-        </div>
-    </section>
+    
+     <div class="container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul id="sidebarMenu"></ul>
+            </nav>
+        </aside>
 
-    <!-- Hostel Section -->
-    <section class="infra-hostel-section" id="hostel">
-        <div class="infra-hostel-container">
-            <div class="infra-section-header">
-                <h2>Premium Hostel Facilities</h2>
-                <p>Comfortable, safe, and modern accommodation designed for student success</p>
-            </div>
+        <main class="main-content">
+            <div id="departmentDetail" class="department-detail"></div>
+        </main>
+    </div>
 
-            <div class="infra-hostel-grid">
-                <div class="infra-hostel-feature-card">
-                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800" alt="Hostel Room" class="infra-hostel-feature-image">
-                    <div class="infra-hostel-feature-content">
-                        <h4>Spacious Rooms</h4>
-                        <p>Well-ventilated rooms with attached bathrooms, study tables, wardrobes, and high-speed internet connectivity.</p>
-                    </div>
-                </div>
-
-                <div class="infra-hostel-feature-card">
-                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800" alt="Hostel Room" class="infra-hostel-feature-image">
-                    <div class="infra-hostel-feature-content">
-                        <h4>Spacious Rooms</h4>
-                        <p>Well-ventilated rooms with attached bathrooms, study tables, wardrobes, and high-speed internet connectivity.</p>
-                    </div>
-                </div>
-
-                <div class="infra-hostel-feature-card">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800" alt="Common Area" class="infra-hostel-feature-image">
-                    <div class="infra-hostel-feature-content">
-                        <h4>Recreation Facilities</h4>
-                        <p>Common rooms with TV, indoor games, reading areas, and spaces for social interaction and relaxation.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="infra-hostel-amenities">
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-wifi"></i></div>
-                    <h5>High-Speed WiFi</h5>
-                    <p>24/7 Internet</p>
-                </div>
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h5>24/7 Security</h5>
-                    <p>CCTV & Guards</p>
-                </div>
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-tshirt"></i></div>
-                    <h5>Laundry Service</h5>
-                    <p>Modern Facilities</p>
-                </div>
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-utensils"></i></div>
-                    <h5>Mess Facilities</h5>
-                    <p>Nutritious Meals</p>
-                </div>
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-broom"></i></div>
-                    <h5>Housekeeping</h5>
-                    <p>Daily Cleaning</p>
-                </div>
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-store"></i></div>
-                    <h5>Campus Store</h5>
-                    <p>Convenience Shop</p>
-                </div>
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-dumbbell"></i></div>
-                    <h5>Gym Access</h5>
-                    <p>Fitness Center</p>
-                </div>
-                <div class="infra-amenity-card">
-                    <div class="infra-amenity-icon"><i class="fas fa-medkit"></i></div>
-                    <h5>Medical Support</h5>
-                    <p>Health Center</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sports Section -->
-    <section class="infra-sports-section" id="sports">
-        <div class="infra-sports-container">
-            <div class="infra-section-header">
-                <h2>World-Class Sports Facilities</h2>
-                <p>Comprehensive infrastructure for every sport - Indoor and Outdoor excellence</p>
-            </div>
-
-            <div class="infra-sports-grid">
-                <div class="infra-sports-card infra-sports-card-large">
-                    <img src="https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=800" alt="Football Field" class="infra-sports-image">
-                    <div class="infra-sports-overlay">
-                        <div class="infra-sports-icon"><i class="fas fa-futbol"></i></div>
-                        <h4>Football Stadium</h4>
-                        <p>FIFA standard synthetic turf field with floodlights, seating capacity of 5000, and professional training facilities.</p>
-                    </div>
-                </div>
-
-                <div class="infra-sports-card">
-                    <img src="https://intowellness.in/wp-content/uploads/2024/05/product-detail-banner.webp" alt="Cricket Ground" class="infra-sports-image">
-                    <div class="infra-sports-overlay">
-                        <div class="infra-sports-icon"><i class="fas fa-baseball-ball"></i></div>
-                        <h4>Cricket Ground</h4>
-                        <p>International standard pitch with practice nets and modern facilities.</p>
-                    </div>
-                </div>
-
-                <div class="infra-sports-card">
-                    <img src="https://images.unsplash.com/photo-1559692048-79a3f837883d?w=800" alt="Basketball Court" class="infra-sports-image">
-                    <div class="infra-sports-overlay">
-                        <div class="infra-sports-icon"><i class="fas fa-basketball-ball"></i></div>
-                        <h4>Basketball Courts</h4>
-                        <p>Multiple indoor and outdoor courts with professional flooring.</p>
-                    </div>
-                </div>
-
-                <div class="infra-sports-card">
-                    <img src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800" alt="Tennis Court" class="infra-sports-image">
-                    <div class="infra-sports-overlay">
-                        <div class="infra-sports-icon"><i class="fas fa-table-tennis"></i></div>
-                        <h4>Tennis Complex</h4>
-                        <p>8 synthetic courts with lighting for evening practice.</p>
-                    </div>
-                </div>
-
-                <div class="infra-sports-card">
-                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800" alt="Swimming Pool" class="infra-sports-image">
-                    <div class="infra-sports-overlay">
-                        <div class="infra-sports-icon"><i class="fas fa-swimming-pool"></i></div>
-                        <h4>Olympic Pool</h4>
-                        <p>50m Olympic-size pool with separate diving and practice pools.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gymnasium Section -->
-    <section class="infra-gym-section" id="gym">
-        <div class="infra-gym-container">
-            <div class="infra-section-header">
-                <h2>Modern Fitness Centers</h2>
-                <p>State-of-the-art equipment and professional trainers for your fitness journey</p>
-            </div>
-
-            <div class="infra-gym-showcase">
-                <div class="infra-gym-main-image">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200" alt="Gymnasium" class="infra-hostel-image" id="gymMainImage">
-                </div>
-
-                <div class="infra-gym-features">
-                    <div class="infra-gym-feature-box" data-image="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200">
-                        <h4><i class="fas fa-dumbbell"></i> Advanced Equipment</h4>
-                        <p>Latest cardio machines, strength training equipment, and free weights from top international brands.</p>
-                    </div>
-
-                    <div class="infra-gym-feature-box" data-image="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200">
-                        <h4><i class="fas fa-user-tie"></i> Certified Trainers</h4>
-                        <p>Professional fitness coaches to guide you with personalized workout plans and nutrition advice.</p>
-                    </div>
-
-                    <div class="infra-gym-feature-box" data-image="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200">
-                        <h4><i class="fas fa-spa"></i> Yoga & Wellness</h4>
-                        <p>Dedicated spaces for yoga, meditation, and wellness programs with expert instructors.</p>
-                    </div>
-
-                    <div class="infra-gym-feature-box" data-image="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200">
-                        <h4><i class="fas fa-clock"></i> Flexible Hours</h4>
-                        <p>Open from 5 AM to 11 PM, seven days a week to fit your schedule.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Transport Section -->
-    <section class="infra-transport-section" id="transport">
-        <div class="infra-transport-container">
-            <div class="infra-section-header">
-                <h2>Comprehensive Transport Network</h2>
-                <p>Safe, comfortable, and extensive bus service connecting all parts of the city</p>
-            </div>
-
-            <div class="infra-transport-grid">
-                <div class="infra-transport-card">
-                    <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800" alt="University Bus" class="infra-transport-image">
-                    <div class="infra-transport-content">
-                        <span class="infra-transport-badge">Daily Service</span>
-                        <h4>University Bus Fleet</h4>
-                        <p>Modern, air-conditioned buses equipped with GPS tracking, CCTV cameras, and comfortable seating for safe and pleasant commute.</p>
-                        <ul class="infra-transport-features">
-                            <li><i class="fas fa-check-circle"></i> 200+ Buses</li>
-                            <li><i class="fas fa-check-circle"></i> 50+ Routes Covering Chennai</li>
-                            <li><i class="fas fa-check-circle"></i> GPS Tracking System</li>
-                            <li><i class="fas fa-check-circle"></i> Female Security Staff</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="infra-transport-card">
-                    <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800" alt="Shuttle Service" class="infra-transport-image">
-                    <div class="infra-transport-content">
-                        <span class="infra-transport-badge">Inter-Campus</span>
-                        <h4>Inter-Campus Shuttle</h4>
-                        <p>Frequent shuttle service connecting all three campuses for seamless movement of students and faculty.</p>
-                        <ul class="infra-transport-features">
-                            <li><i class="fas fa-check-circle"></i> Every 30 Minutes</li>
-                            <li><i class="fas fa-check-circle"></i> Free for Students</li>
-                            <li><i class="fas fa-check-circle"></i> AC Coaches</li>
-                            <li><i class="fas fa-check-circle"></i> Real-time Tracking App</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dining Section -->
-    <section class="infra-dining-section" id="dining">
-        <div class="infra-dining-container">
-            <div class="infra-section-header">
-                <h2>Exceptional Dining Experience</h2>
-                <p>Hygienic, nutritious, and delicious food options catering to diverse tastes</p>
-            </div>
-
-            <div class="infra-dining-grid">
-                <div class="infra-dining-card">
-                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800" alt="Main Cafeteria" class="infra-dining-image">
-                    <div class="infra-dining-overlay">
-                        <div class="infra-dining-icon"><i class="fas fa-utensils"></i></div>
-                        <h4>Multi-Cuisine Cafeteria</h4>
-                        <p>Spacious dining halls serving Indian, Continental, Chinese, and South Indian specialties with fresh ingredients.</p>
-                    </div>
-                </div>
-
-                <div class="infra-dining-card">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Food Court" class="infra-dining-image">
-                    <div class="infra-dining-overlay">
-                        <div class="infra-dining-icon"><i class="fas fa-store"></i></div>
-                        <h4>Food Court</h4>
-                        <p>Multiple food counters offering pizzas, burgers, sandwiches, and quick bites for students on the go.</p>
-                    </div>
-                </div>
-
-                <div class="infra-dining-card">
-                    <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800" alt="Coffee Shop" class="infra-dining-image">
-                    <div class="infra-dining-overlay">
-                        <div class="infra-dining-icon"><i class="fas fa-coffee"></i></div>
-                        <h4>Coffee Lounges</h4>
-                        <p>Cozy cafes serving premium coffee, snacks, and desserts - perfect for study sessions and hangouts.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Library Section -->
-    <section class="infra-library-section" id="library">
-        <div class="infra-library-container">
-            <div class="infra-section-header">
-                <h2>Central Library - Knowledge Hub</h2>
-                <p>Extensive collection of books, journals, and digital resources in a serene environment</p>
-            </div>
-
-            <div class="infra-library-showcase">
-                <div class="infra-library-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800" alt="Library" class="infra-hostel-image">
-                </div>
-
-                <div class="infra-library-content">
-                    <h3>World-Class Learning Center</h3>
-                    <p>Our central library is a temple of knowledge spread across multiple floors with climate-controlled reading halls, private study cabins, group discussion rooms, and 24/7 access during exam periods.</p>
-                    
-                    <div class="infra-library-stats">
-                        <div class="infra-library-stat">
-                            <h5>5 Lakh+</h5>
-                            <p>Books & Journals</p>
-                        </div>
-                        <div class="infra-library-stat">
-                            <h5>10,000+</h5>
-                            <p>E-Journals</p>
-                        </div>
-                        <div class="infra-library-stat">
-                            <h5>2000+</h5>
-                            <p>Seating Capacity</p>
-                        </div>
-                        <div class="infra-library-stat">
-                            <h5>24/7</h5>
-                            <p>Digital Access</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Medical Section -->
-    <section class="infra-medical-section" id="medical">
-        <div class="infra-medical-container">
-            <div class="infra-section-header">
-                <h2>Comprehensive Medical Care</h2>
-                <p>24/7 healthcare support with modern facilities and experienced medical professionals</p>
-            </div>
-
-            <div class="infra-medical-grid">
-                <div class="infra-medical-content">
-                    <h3>Health & Wellness Center</h3>
-                    <p>SRM Prime Hospital and campus health centers provide round-the-clock medical care with qualified doctors, nurses, and support staff. Emergency ambulance services and tie-ups with major hospitals ensure the best care for our students.</p>
-                    
-                    <div class="infra-medical-features">
-                        <div class="infra-medical-feature">
-                            <i class="fas fa-hospital"></i>
-                            <div>
-                                <h5>SRM Prime Hospital</h5>
-                                <p>500-bed multi-specialty</p>
-                            </div>
-                        </div>
-                        <div class="infra-medical-feature">
-                            <i class="fas fa-ambulance"></i>
-                            <div>
-                                <h5>Emergency Services</h5>
-                                <p>24/7 ambulance available</p>
-                            </div>
-                        </div>
-                        <div class="infra-medical-feature">
-                            <i class="fas fa-user-md"></i>
-                            <div>
-                                <h5>Qualified Doctors</h5>
-                                <p>Specialists on campus</p>
-                            </div>
-                        </div>
-                        <div class="infra-medical-feature">
-                            <i class="fas fa-prescription"></i>
-                            <div>
-                                <h5>Pharmacy</h5>
-                                <p>On-campus availability</p>
-                            </div>
-                        </div>
-                        <div class="infra-medical-feature">
-                            <i class="fas fa-brain"></i>
-                            <div>
-                                <h5>Counseling</h5>
-                                <p>Mental health support</p>
-                            </div>
-                        </div>
-                        <div class="infra-medical-feature">
-                            <i class="fas fa-heartbeat"></i>
-                            <div>
-                                <h5>Health Checkups</h5>
-                                <p>Regular screenings</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="infra-medical-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800" alt="Medical Facility" class="infra-hostel-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Labs Section -->
-    <section class="infra-labs-section" id="labs">
-        <div class="infra-labs-container">
-            <div class="infra-section-header" >
-                <h2 style="color: white;">Cutting-Edge Research Laboratories</h2>
-                <p style="color: white;">Advanced labs equipped with latest technology for hands-on learning and research</p>
-            </div>
-
-            <div class="infra-labs-grid">
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h4>Computer Labs</h4>
-                    <p>1000+ high-performance workstations with latest software, multiple OS support, and high-speed internet connectivity.</p>
-                </div>
-
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-robot"></i></div>
-                    <h4>Robotics Lab</h4>
-                    <p>State-of-the-art facility for robotics, automation, and AI research with industrial-grade equipment.</p>
-                </div>
-
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-flask"></i></div>
-                    <h4>Chemistry Labs</h4>
-                    <p>Modern analytical instruments, safety equipment, and research-grade chemicals for experimental learning.</p>
-                </div>
-
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-microscope"></i></div>
-                    <h4>Biology Labs</h4>
-                    <p>Advanced microscopes, tissue culture facilities, and molecular biology equipment for life sciences.</p>
-                </div>
-
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-bolt"></i></div>
-                    <h4>Electronics Lab</h4>
-                    <p>Oscilloscopes, signal generators, and latest testing equipment for electronics engineering students.</p>
-                </div>
-
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-cogs"></i></div>
-                    <h4>Mechanical Workshop</h4>
-                    <p>CNC machines, 3D printers, and precision tools for manufacturing and prototyping projects.</p>
-                </div>
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-bolt"></i></div>
-                    <h4>Electronics Lab</h4>
-                    <p>Oscilloscopes, signal generators, and latest testing equipment for electronics engineering students.</p>
-                </div>
-
-                <div class="infra-lab-card">
-                    <div class="infra-lab-icon"><i class="fas fa-cogs"></i></div>
-                    <h4>Mechanical Workshop</h4>
-                    <p>CNC machines, 3D printers, and precision tools for manufacturing and prototyping projects.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    
     <footer class="infra-footer">
         <div class="infra-footer-content">
             <div class="infra-footer-section">
@@ -607,8 +154,8 @@
         </div>
     </footer>
     <script src="./assets/js/scripts.js"></script>
-    <script>
-       
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
+    <script src="./assets/js/infra_college_data.js"></script>
+    <script src="./assets/js/infra_college_logic.js"></script>
 </body>
 </html>

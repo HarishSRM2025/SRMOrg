@@ -46,14 +46,14 @@
         .sidebar {
             position: sticky;
             top: 2rem;
-            height: fit-content;
         }
 
         .sidebar-nav {
             background: var(--color-bg-card);
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-md);
-            overflow:hidden;
+            overflow:auto;
+            height:80%;
         }
 
         .sidebar-nav h3 {
@@ -199,6 +199,7 @@
             -webkit-overflow-scrolling: touch;
             border:.1px solid #e3e3e3;
             width:max-content;
+            margin-bottom:30px;
         }
 
         .tab-button {

@@ -53,7 +53,6 @@
                     <div class="tabs-nav">
                         <button class="tab-button active" onclick="switchTab(event, 'overview-${d.id}')">Overview</button>
                         <button class="tab-button" onclick="switchTab(event, 'departments-${d.id}')">Departments</button>
-                        <button class="tab-button" onclick="switchTab(event, 'infrastructure-${d.id}')">Infrastructure</button>
                         <button class="tab-button" onclick="switchTab(event, 'campus_highlights-${d.id}')">Campus Highlights</button>
                         <a class="tab-button" href='${d.href}' target='_blank' style='background:${d.color};color:white;text-decoration:none;'>Visit Our Website</a>
                     </div>
@@ -79,7 +78,8 @@
                     </div>
 
                     <div id="departments-${d.id}" class="tab-content">
-                        <h3>UG Departments</h3>
+                    ${d.departments ? Array.isArray(d.departments["undergraduate_programs"]) 
+                        ?`<h3>UG Departments</h3>
                         <ul>
                             ${(d.departments["undergraduate_programs"] || [])
                                 .map(e => `<li>${e}</li>`).join('')}
@@ -91,13 +91,15 @@
                         <ul>
                             ${(d.departments["postgraduate_programs"] || [])
                                 .map(e => `<li>${e}</li>`).join('')}
-                        </ul>
-                    </div>
-
-                    <div id="infrastructure-${d.id}" class="tab-content">
-                        <ul>
-                            ${(d.infrastructure || []).map(i => `<li>${i}</li>`).join('')}
-                        </ul>
+                        </ul>` 
+                        :`<h3>Departments</h3>
+                         <ul>
+                            ${(d.departments || [])
+                                .map(e => `<li>${e}</li>`).join('')}
+                        </ul>`
+                    :``
+                    }
+                        
                     </div>
 
                     <div id="campus_highlights-${d.id}" class="tab-content">
