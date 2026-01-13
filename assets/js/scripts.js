@@ -231,3 +231,28 @@ document.addEventListener('click', (e) => {
         document.querySelectorAll('.infra-hostel-feature-card, .infra-sports-card, .infra-transport-card, .infra-dining-card, .infra-lab-card').forEach(el => {
             observer.observe(el);
         });
+
+        const sections = document.querySelectorAll(".watch-section");
+        const navbarLinks = document.querySelectorAll(".indicator");
+
+        window.addEventListener("scroll", () => {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const sectionId = section.id;
+
+            if (rect.top <= 0 && rect.bottom > 0) {
+
+            navbarLinks.forEach(link => {
+                const targetId = link.getAttribute("href").split("#")[1];
+
+                if (targetId === sectionId) {
+                link.classList.add("section-active");
+                } else {
+                link.classList.remove("section-active");
+                }
+            });
+
+            } 
+        });
+        });
+

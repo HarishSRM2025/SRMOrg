@@ -117,6 +117,8 @@ body {
     width: 100%;
 }
 
+
+
 .nav-links a:hover {
     color: #302b6d;
 }
@@ -3130,4 +3132,12 @@ color: #302b6d;
             .vision-mission-icon-container i {
                 font-size: 2rem;
             }
+        }
+
+        .section-active{
+            position: relative;
+        }
+        .nav-links .section-active{
+            color: #DC143C;
+            font-weight: bolder;
         }
